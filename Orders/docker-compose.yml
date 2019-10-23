@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+
+        orders:
+
+                image: api/orders
+                container_name: ordres_api
+                privileged: true 
+                tty: true
+                volumes:
+                        - ./appsettings.json:/app/appsettings.json
+                        - ./start-app.sh:/app/start-app.sh
+                links:
+                        - invoices:invoicesserver
+                ports: 
+                        - 80:80
+                entrypoint: bash -c "/app/start-app.sh 2>&1"
+
+        invoices:
+                image: api/invoices
+                container_name: invoices_api
+                privileged: true 
+                tty: true
+                environment:
+                        - MYSQL_DATABASE=invoices 
+                        - MYSQL_USER=invoice 
+                        - MYSQL_PASSWORD=invoice
+                        - DBHOST=dbserver
+                volumes:
+                        - ../Invoices/database:/opt/database/
+                        - ../Invoices/start-app.sh:/app/start-app.sh
+                links:
+                        - db:dbserver
+                ports: 
+                        - 8080:80
+                entrypoint: bash -c "/app/start-app.sh 2>&1"
+
+        db:
+                image: mariadb:10.4
+                container_name: invoices_api_db
+                privileged: true 
+                tty: true
+                environment:
+                        - MYSQL_ROOT_PASSWORD=root 
+                        - MYSQL_DATABASE=invoices 
+                        - MYSQL_USER=invoice 
+                        - MYSQL_PASSWORD=invoice
+                ports: 
+                        - 3306:3306
