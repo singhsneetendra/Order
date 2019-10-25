@@ -9,35 +9,12 @@ namespace Orders.Tests
     {
 
         [Fact]
-        public void InvalidOrderList()
-        {
-            //Arrange 
-            List<ObjectType> orderList = new List<ObjectType>()
-
-            {
-                new ObjectType {
-                ObjectID = 0,
-                ObjectName = "C# Book",
-                ObjectPrice = 3,
-                ObjectQuantity = "10 pieces"
-                }
-            };
-
-            //Act
-            bool response;
-            string msg;
-            (response, msg) = Order.ValidateOrderList(orderList);
-
-            // Assert
-            Assert.False(response, msg);
-        }
-
-        [Fact]
         public void ValidOrderList()
         {
             //Arrange 
+            bool response;
+            string msg;
             List<ObjectType> orderList = new List<ObjectType>()
-
             {
                 new ObjectType {
                 ObjectID = 1,
@@ -48,8 +25,6 @@ namespace Orders.Tests
             };
 
             //Act
-            bool response;
-            string msg;
             (response, msg) = Order.ValidateOrderList(orderList);
 
             // Assert
@@ -57,11 +32,12 @@ namespace Orders.Tests
         }
 
         [Fact]
-        public void InvalidObjectId()
+        public void InvalidOrderList()
         {
             //Arrange 
+            bool response;
+            string msg;
             List<ObjectType> orderList = new List<ObjectType>()
-
             {
                 new ObjectType {
                 ObjectID = 0,
@@ -72,8 +48,6 @@ namespace Orders.Tests
             };
 
             //Act
-            bool response;
-            string msg;
             (response, msg) = Order.ValidateOrderList(orderList);
 
             // Assert
@@ -84,8 +58,9 @@ namespace Orders.Tests
         public void ValidObjectId()
         {
             //Arrange 
+            bool response;
+            string msg;
             List<ObjectType> orderList = new List<ObjectType>()
-
             {
                 new ObjectType {
                 ObjectID = 1,
@@ -96,8 +71,6 @@ namespace Orders.Tests
             };
 
             //Act
-            bool response;
-            string msg;
             (response, msg) = Order.ValidateOrderList(orderList);
 
             // Assert
@@ -105,23 +78,22 @@ namespace Orders.Tests
         }
 
         [Fact]
-        public void InValidObjectPrice()
+        public void InvalidObjectId()
         {
             //Arrange 
+            bool response;
+            string msg;
             List<ObjectType> orderList = new List<ObjectType>()
-
             {
                 new ObjectType {
-                ObjectID = 1,
+                ObjectID = 0,
                 ObjectName = "C# Book",
-                ObjectPrice = 0,
+                ObjectPrice = 3,
                 ObjectQuantity = "10 pieces"
                 }
             };
 
             //Act
-            bool response;
-            string msg;
             (response, msg) = Order.ValidateOrderList(orderList);
 
             // Assert
@@ -132,8 +104,9 @@ namespace Orders.Tests
         public void ValidObjectPrice()
         {
             //Arrange 
+            bool response;
+            string msg;
             List<ObjectType> orderList = new List<ObjectType>()
-
             {
                 new ObjectType {
                 ObjectID = 1,
@@ -144,12 +117,34 @@ namespace Orders.Tests
             };
 
             //Act
-            bool response;
-            string msg;
             (response, msg) = Order.ValidateOrderList(orderList);
 
             // Assert
             Assert.True(response, msg);
         }
+
+        [Fact]
+        public void InValidObjectPrice()
+        {
+            //Arrange 
+            bool response;
+            string msg;
+            List<ObjectType> orderList = new List<ObjectType>()
+            {
+                new ObjectType {
+                ObjectID = 1,
+                ObjectName = "C# Book",
+                ObjectPrice = 0,
+                ObjectQuantity = "10 pieces"
+                }
+            };
+
+            //Act
+            (response, msg) = Order.ValidateOrderList(orderList);
+
+            // Assert
+            Assert.False(response, msg);
+        }
+
     }
 }
