@@ -49,7 +49,7 @@ namespace Orders.Tests.Controllers
             string response = controller.Post(orderList);
 
             //Assert
-            Assert.Equal("Error sending HTTP request to Invoices api", response);
+            Assert.Equal("Error sending HTTP request to Invoices api and saved Orders.", response);
         }
 
     }
