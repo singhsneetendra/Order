@@ -8,7 +8,6 @@ RUN dotnet restore
 
 # Copy the project files and build release.
 COPY . ./
-RUN  dotnet test
 RUN  dotnet publish -c Release -o out
 
 # Generate runtime image.
