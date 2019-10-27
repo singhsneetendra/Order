@@ -9,7 +9,7 @@ namespace DemoWebAPIWithSwagger.Controllers
     {
         [HttpPost]
         [Route("GetOrder")]
-        public string Post([FromBody]  List<ObjectType> orderList)
+        public virtual string Post([FromBody]  List<ObjectType> orderList)
         {
             bool response = true;
             string responseText;
@@ -21,7 +21,7 @@ namespace DemoWebAPIWithSwagger.Controllers
                 return responseText;
             }
 
-	    // Send a post request to Invoices api to insert ordelist to database.
+            // Send a post request to Invoices api to insert ordelist to database.
             responseText = InvoicesApi.CreateOrder(orderList);
             return responseText;
         }
