@@ -28,7 +28,15 @@ namespace Orders.Clients
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             // Get base url from appsettings.json.
             var readConfig = GetConfiguration();
-            client.BaseAddress = new Uri(readConfig.GetSection("invoicesAddr").Value);
+
+            string url = readConfig.GetSection("invoicesAddr").Value;
+            if (url is null)
+            {
+                Logger.Warn("Error sending HTTP request not able to read from config url for Invoices api host to send post request to save invoice.");
+                return ("Error sending HTTP request to Invoices api and saved Orders.");
+
+            }
+            client.BaseAddress = new Uri(url);
 
             var data = JsonConvert.SerializeObject(OrderList, Formatting.Indented);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "relativeAddress");
@@ -39,14 +47,14 @@ namespace Orders.Clients
             try
             {
                 var response = client.PostAsync("/SaveOrdersDetails", request.Content);
-                string result = response.Result.ToString();
-                Logger.Info("Sucessfully sent HTTP request");
-                return result;
+                string responseDetails = response.Result.ToString();
+                Logger.Info("Sucessfully sent HTTP request to api Invoices with repsonse" + responseDetails);
+                return ("Sucessfully sent HTTP request to api Invoices");
             }
             catch (HttpRequestException ex)
             {
                 Logger.Warn("Error sending HTTP request", ex);
-                return ex.ToString();
+                return ("Error sending HTTP request to Invoices api and saved Orders.");
             }
         }
 
