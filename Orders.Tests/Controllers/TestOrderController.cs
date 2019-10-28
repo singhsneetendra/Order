@@ -21,13 +21,13 @@ namespace Orders.Tests.Controllers
              }
             };
             var controllerMock = new Mock<DemoWebAPIWithSwagger.Controllers.OrderController>();
-            controllerMock.Setup(s => s.Post(orderList)).Returns(("Sucessfuly saver Orders."));
+            controllerMock.Setup(s => s.Post(orderList)).Returns(("Sucessfuly saved Orders."));
 
             //Act
             string response = controllerMock.Object.Post(orderList);
 
             //Assert
-            Assert.Equal("Sucessfuly saver Orders.", response);
+            Assert.Equal("Sucessfuly saved Orders.", response);
         }
 
         [Fact]
