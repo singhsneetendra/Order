@@ -20,7 +20,7 @@ access invoices applicatoin at http://localhost:8080/swagger/index.html
 
 You can run post request to be sent from endpoint http://localhost:80/swagger/index.html and check if is added in database by qureying database OR accessing http://localhost:8080/swagger/index.html and making a get request to list those order. 
 
-access database query to see data in orders table. 
+Access database and query to see data in orders table. 
 ```
 mysql -uinvoice -pinvoice -hlocalhost invoices
 select * from orders ;
