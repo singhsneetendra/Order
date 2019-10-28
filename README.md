@@ -1,4 +1,4 @@
-# Orders - Sample Web API (.NET Core ) to receive orders and send to Invoices api.
+# Order - Sample Web API (.NET Core ) to receive orders and send to Invoices api.
 
 ## Deploy and run with docker to initialize app along with invoices app.
 
@@ -6,8 +6,8 @@
 ```
 mkdir app
 cd app/
-git clone https://github.com/singhsneetendra/Orders.git
-git clone https://github.com/singhsneetendra/Invoices.git
+git clone https://github.com/singhsneetendra/Order.git
+git clone https://github.com/singhsneetendra/Invoice.git
 cd Order
 docker build --no-cache -t api/orders .
 cd ../Invoice
