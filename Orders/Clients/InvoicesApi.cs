@@ -26,9 +26,9 @@ namespace Orders.Clients
             var client = new HttpClient();
             // ACCEPT header
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             // Get base url from appsettings.json.
             var readConfig = GetConfiguration();
-
             string url = readConfig.GetSection("invoicesAddr").Value;
             if (url is null)
             {

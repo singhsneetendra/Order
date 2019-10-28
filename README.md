@@ -2,7 +2,7 @@
 
 ## Deploy and run with docker to initialize app along with invoices app.
 
-#### checkout repos in some directories and build images, and intialize api's.
+#### checkout repos in some directories and test and build images, and intialize api's.
 ```
 mkdir app
 cd app/
