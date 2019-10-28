@@ -8,11 +8,11 @@ mkdir app
 cd app/
 git clone https://github.com/singhsneetendra/Orders.git
 git clone https://github.com/singhsneetendra/Invoices.git
-cd Orders
+cd Order
 docker build --no-cache -t api/orders .
-cd ../Invoices
+cd ../Invoice
 docker build --no-cache -t api/invoices .
-cd ../Orders
+cd ../Order
 docker-compose -f ./docker-compose.yml up -d 
 ```
 access orders application at - http://localhost:80/swagger/index.html

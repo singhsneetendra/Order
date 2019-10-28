@@ -9,7 +9,7 @@ services:
                 privileged: true 
                 tty: true
                 volumes:
-                        - ./appsettings.json:/app/appsettings.json
+                        - ./Orders/appsettings.json:/app/appsettings.json
                         - ./start-app.sh:/app/start-app.sh
                 links:
                         - invoices:invoicesserver
@@ -28,8 +28,8 @@ services:
                         - MYSQL_PASSWORD=invoice
                         - DBHOST=dbserver
                 volumes:
-                        - ../Invoices/database:/opt/database/
-                        - ../Invoices/start-app.sh:/app/start-app.sh
+                        - ../Invoice/database:/opt/database/
+                        - ../Invoice/start-app.sh:/app/start-app.sh
                 links:
                         - db:dbserver
                 ports: 
